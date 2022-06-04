@@ -68,17 +68,17 @@ namespace Yutnori
         // 현재 선택된 말에 대해서, 목적지로 사용될 수 있는 말판의 인덱스들의 리스트.
         Dictionary<int, Yut> destDict = new Dictionary<int, Yut>();
 
-        // 충렬0613: 말의 배열
+        // 말의 배열
         Marker[] markers;
 
-        //김환: 겹쳐진 말의 갯수 표시용 변수
-        //김환: <발판위치, 해당 위치의 말 수> 의 dictionary 생성
+        // 겹쳐진 말의 갯수 표시용 변수
+        // <발판위치, 해당 위치의 말 수> 의 dictionary 생성
         Dictionary<int, int> markerfreq = new Dictionary<int, int>();
         Font drawFont = new Font("Arial", 10,FontStyle.Bold);
         SolidBrush drawBrush = new SolidBrush(Color.Black);
         StringFormat stringFormat = new StringFormat();
 
-        //김환: 게임 페이즈
+        // 게임 페이즈
         enum PHASE
         {
             LOGIN,      //로그인화면
@@ -90,7 +90,7 @@ namespace Yutnori
             END_GAME    //게임종료
         }
 
-        //김환: 게임 페이즈변경 함수 (인터페이스를 해당페이즈에 맞게 수정)
+        // 게임 페이즈변경 함수 (인터페이스를 해당페이즈에 맞게 수정)
         void changePhase(PHASE new_phase)
         {
             if (new_phase == PHASE.LOGIN)
@@ -284,7 +284,7 @@ namespace Yutnori
             // 클라이언트에 서버로 부터 받은 플레이어 번호를 할당
             my_player_num = Int32.Parse(Encoding.UTF8.GetString(player_num_buffer).Trim('\0')); // error
 
-            initializeMarkers(); // 충렬 추가
+            initializeMarkers(); // 추가
         }
 
         // 인자로 들어온 buffer를 모든 클라이언트에게 보낸다. - 서버가 사용
@@ -406,7 +406,7 @@ namespace Yutnori
             ready_count = 0;
             is_ready = false;
 
-            initializeMarkers(); // 말 초기화 (충렬 추가)
+            initializeMarkers(); // 말 초기화 (추가)
         }
 
         // 클라이언트가 "입장" 눌렀을 때
@@ -1771,7 +1771,7 @@ namespace Yutnori
                     pb_yut4.Image = Properties.Resources.yut_back2;
                 }
 
-                //김환 : 더블빽도는 아무효과가 없는 함정이다. 더이상 말을 이동할 기회가 없거나 굴릴 기회도 남아있지 않다면 턴을 넘긴다.
+                // 더블빽도는 아무효과가 없는 함정이다. 더이상 말을 이동할 기회가 없거나 굴릴 기회도 남아있지 않다면 턴을 넘긴다.
                 if (yuts.Count <= 0 && yut_chance <= 0)
                 {
                     nextTurn();
@@ -1853,7 +1853,7 @@ namespace Yutnori
             rtb_chat.ScrollToCaret();
         }
 
-        //김환: 게임상황 표시
+        // 게임상황 표시
         private void Pnl_game_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -1976,7 +1976,7 @@ namespace Yutnori
             }
         }
 
-        // 이충렬0613 : 턴을 넘기는 함수
+        // 턴을 넘기는 함수
         private void nextTurn()
         {
             yuts.Clear();
@@ -2004,7 +2004,7 @@ namespace Yutnori
             }
         }
 
-        //충렬0613: 모든 말 정보를 서버로 보냅니다.
+        // 모든 말 정보를 서버로 보냅니다.
         private void sendMarkersData()
         {
             // 무엇을 보낼지 스트링을 만들어 나가는 작업
